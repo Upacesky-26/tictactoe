@@ -9,9 +9,11 @@ class Player
 end
 
 class Game
+  def initialize
   first_row = ['-', '-', '-']
   second_row = ['-', '-', '-']
   third_row = ['-', '-', '-']
+  end
 
   def win?
     case test
@@ -31,7 +33,6 @@ class Game
   end
 
   def draw_field
-
     puts "A" + first_row
     puts "B" + second_row
     puts "C" + third_row
