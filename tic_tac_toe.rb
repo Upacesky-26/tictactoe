@@ -9,24 +9,29 @@ class Player
 end
 
 class Game
+  first_row = ['-', '-', '-']
+  second_row = ['-', '-', '-']
+  third_row = ['-', '-', '-']
+
   def win?
     case test
     when first_row.uniq.count <= 1
-      
+      'true'
     when second_row.uniq.count <= 1
-      
+      'true'
     when third_row.uniq.count <= 1
-
-    when 
-    else 
+      'true'
+    when (first_row[0] && second_row[1] && third_row[2]).uniq.count <= 1
+      'true'
+    when (first_row[2] && second_row[1] && third_row[0]).uniq.count <= 1
+      'true'
+    else
       
     end
   end
 
   def draw_field
-    first_row = ['-', '-', '-']
-    second_row = ['-', '-', '-']
-    third_row = ['-', '-', '-']
+
     puts "A" + first_row
     puts "B" + second_row
     puts "C" + third_row
