@@ -9,6 +9,7 @@ class Player
 end
 
 class Game
+  attr_accessor :first_row :second_row :third_row
   def initialize
   first_row = ['-', '-', '-']
   second_row = ['-', '-', '-']
@@ -31,7 +32,7 @@ class Game
       
     end
   end
-
+  public
   def draw_field
     puts "A" + first_row
     puts "B" + second_row
