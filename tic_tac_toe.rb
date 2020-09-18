@@ -30,6 +30,7 @@ class Game
     puts "C" + @third_row
   end
 end
+
 #define the players
 class Player < Game
   def initialize(name)
@@ -38,7 +39,11 @@ class Player < Game
   end
 
   def plays
-    # input coordonate
+    # choose player
+    # input coordinate
+    # check win
+    # if win = "true" goto end
+    # else change player and start new round
   end
 end
 
