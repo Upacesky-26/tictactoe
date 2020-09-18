@@ -1,15 +1,3 @@
-#define the players
-class Player
-  def initialize(name)
-    @name = name
-    @games_won = games_won
-  end
-
-  def plays
-
-  end
-end
-
 # define the game behaviors
 class Game 
 
@@ -42,3 +30,15 @@ class Game
     puts "C" + @third_row
   end
 end
+#define the players
+class Player < Game
+  def initialize(name)
+    @name = name
+    @games_won = games_won
+  end
+
+  def plays
+    # input coordonate
+  end
+end
+
