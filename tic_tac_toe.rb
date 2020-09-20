@@ -5,9 +5,9 @@ class Game
   attr_accessor :first_row, :second_row, :third_row
 
   def initialize
-    @first_row = ['-', '-', "-"]
-    @second_row = ['-', '-', "-"]
-    @third_row = ['-', '-', "-"]
+    @first_row = ['-', '-', '-']
+    @second_row = ['-', '-', '-']
+    @third_row = ['-', '-', '-']
     @turn_count = 0
   end
 
