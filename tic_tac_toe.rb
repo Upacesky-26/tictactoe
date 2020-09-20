@@ -3,9 +3,9 @@ class Game
   attr_accessor :first_row, :second_row, :third_row
 
   def initialize
-    @first_row = first_row
-    @second_row = second_row
-    @third_row = third_row
+    @first_row = ['-', '-', "-"]
+    @second_row = ['-', '-', "-"]
+    @third_row = ['-', '-', "-"]
     @turn_count = 0
   end
 
@@ -36,16 +36,16 @@ end
 
 # define the players
 class Player < Game
-  def initialize(name)
-    @name = name
-    @games_won = 0
+  def initialize
+    @player1 = player1
+    @player2 = player2
   end
 
   def your_turn?
     if turn_count % 2 = 0
-      Player1.plays
+      player1.plays
     else
-      Player2.plays
+      player2.plays
     end
   end
 
