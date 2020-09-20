@@ -50,9 +50,12 @@ class Player < Game
       player2.plays
     end
   end
+  def player_input
+    current_player = player1 ? sign = "X" : sign = "0"
+  end
 
   def plays
-    # draw the game
+    draw_field
     # choose player
     # input coordinate
     @turn_count =+ 1
@@ -60,3 +63,4 @@ class Player < Game
   end
   
 end
+current_player.plays
