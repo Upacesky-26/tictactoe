@@ -6,6 +6,7 @@ class Game
     @first_row = first_row
     @second_row = second_row
     @third_row = third_row
+    @turn_count = 0
   end
 
   def win?
@@ -28,26 +29,32 @@ class Game
     puts "B" + @second_row
     puts "C" + @third_row
   end
+  def endgame
+    puts ""
+  end
 end
 
 # define the players
 class Player < Game
   def initialize(name)
     @name = name
-    @games_won = games_won
+    @games_won = 0
   end
 
   def your_turn?
-    if 
+    if turn_count % 2 = 0
+      Player1.plays
+    else
+      Player2.plays
+    end
   end
 
   def plays
     # draw the game
     # choose player
     # input coordinate
-    # check win
-    # if win = "true" goto end
-    # else change player and start new round
+    @turn_count =+ 1
+    win = "true" ? :endgame : your_turn? # checks if a player has won, else start a new turn
   end
   
 end
