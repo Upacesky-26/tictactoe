@@ -1,6 +1,5 @@
 # define the game behaviors
-class Game 
-
+class Game
   attr_accessor :first_row, :second_row, :third_row
 
   def initialize
@@ -31,19 +30,24 @@ class Game
   end
 end
 
-#define the players
+# define the players
 class Player < Game
   def initialize(name)
     @name = name
     @games_won = games_won
   end
 
+  def your_turn?
+    if 
+  end
+
   def plays
+    # draw the game
     # choose player
     # input coordinate
     # check win
     # if win = "true" goto end
     # else change player and start new round
   end
+  
 end
-
