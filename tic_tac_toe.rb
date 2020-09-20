@@ -1,4 +1,6 @@
+# frozen_string_literal: true
 # define the game behaviors
+
 class Game
   attr_accessor :first_row, :second_row, :third_row
 
@@ -29,6 +31,7 @@ class Game
     puts "B" + @second_row
     puts "C" + @third_row
   end
+
   def endgame
     puts "Congratulation, #{current_player} wins!"
   end
@@ -42,7 +45,7 @@ class Player < Game
   end
 
   def your_turn?
-    if turn_count % 2 = 0
+    if turn_count.even?
       current_player = player1
       player1.plays
     else
@@ -50,17 +53,24 @@ class Player < Game
       player2.plays
     end
   end
+
   def player_input
-    current_player = player1 ? sign = "X" : sign = "0"
+    if current_player == player1
+      sign = 'X'
+    else
+      sign = '0'
+    end
+    puts "#{current_player}, please input your coordonates with
+    a letter (A, B or C) and a number (1, 2 or 3)"
+    playergets.chomp
   end
 
   def plays
     draw_field
     # choose player
     # input coordinate
-    @turn_count =+ 1
-    win = "true" ? :endgame : your_turn? # checks if a player has won, else start a new turn
+    @turn_count += 1
+    win == "true" ? :endgame : your_turn? # checks if a player has won, else start a new turn
   end
-  
 end
 current_player.plays
