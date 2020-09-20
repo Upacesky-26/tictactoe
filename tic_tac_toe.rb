@@ -30,7 +30,7 @@ class Game
     puts "C" + @third_row
   end
   def endgame
-    puts ""
+    puts "Congratulation, #{current_player} wins!"
   end
 end
 
@@ -43,8 +43,10 @@ class Player < Game
 
   def your_turn?
     if turn_count % 2 = 0
+      current_player = player1
       player1.plays
     else
+      current_player = player2
       player2.plays
     end
   end
