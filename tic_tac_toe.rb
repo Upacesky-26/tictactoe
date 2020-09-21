@@ -28,9 +28,9 @@ class Game
   end
 
   def draw_field
-    puts "A" + @first_row
-    puts "B" + @second_row
-    puts "C" + @third_row
+    puts "A " + @first_row.to_s
+    puts "B " + @second_row.to_s
+    puts "C " + @third_row.to_s
   end
 
   def endgame
