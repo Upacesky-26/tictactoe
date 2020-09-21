@@ -62,7 +62,18 @@ class Player < Game
     end
     puts "#{current_player}, please input your coordonates with
     a letter (A, B or C) and a number (1, 2 or 3)"
-    playergets.chomp
+    round = gets.chomp.check
+    
+  end
+
+  def check
+    round.to_s.length != 2 ? :input_error
+    round.match?(ABC 123) ? :input_error
+  end
+
+  def input_error
+    puts "#{current_player}, your input is not a letter and a number,
+    please input again"
   end
 
   def plays
