@@ -2,13 +2,14 @@
 # define the game behaviors
 
 class Game
-  attr_accessor :first_row, :second_row, :third_row, :turn_count
+  attr_accessor :first_row, :second_row, :third_row, :turn_count, :current_player
 
   def initialize
     @first_row = ['-', '-', '-']
     @second_row = ['-', '-', '-']
     @third_row = ['-', '-', '-']
     @turn_count = 0
+    @current_player = player1
   end
 
   def win?
@@ -39,7 +40,6 @@ end
 
 # define the players
 class Player < Game
-  attr_reader :current_player
   def initialize
     @player1 = player1
     @player2 = player2
@@ -64,13 +64,12 @@ class Player < Game
     puts "#{current_player}, please input your coordonates with
     a letter (A, B or C) and a number (1, 2 or 3)"
     round = gets.chomp.to_s.check
-    
   end
 
   def check
-    round.to_i.length != 2 ? :input_error
+    #round.to_i.length != 2 ? :input_error
     input_error unless round.match?(/\AA|B|C/i) # checks if input matches letter
-    input_error unless round.match?(/1|2|3\z/)
+    input_error unless round.match?(/1|2|3\z/)# checks if last input character matches 1,2 or 3
   end
 
   def input_error
