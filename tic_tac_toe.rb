@@ -1,4 +1,6 @@
+require 'pry'
 # frozen_string_literal: true
+
 # define the game behaviors
 
 class Game
@@ -9,20 +11,20 @@ class Game
     @second_row = ['-', '-', '-']
     @third_row = ['-', '-', '-']
     @turn_count = 0
-    @current_player = player1
+    @current_player = current_player
   end
 
   def win?
     case test
-    when first_row.uniq.count <= 1
+    when @first_row.uniq.count <= 1
       'true'
-    when second_row.uniq.count <= 1
+    when @second_row.uniq.count <= 1
       'true'
-    when third_row.uniq.count <= 1
+    when @third_row.uniq.count <= 1
       'true'
-    when (first_row[0] && second_row[1] && third_row[2]).uniq.count <= 1
+    when (@first_row[0] && @second_row[1] && @third_row[2]).uniq.count <= 1
       'true'
-    when (first_row[2] && second_row[1] && third_row[0]).uniq.count <= 1
+    when (@first_row[2] && @second_row[1] && @third_row[0]).uniq.count <= 1
       'true'
     end
   end
@@ -39,10 +41,13 @@ class Game
 end
 
 # define the players
-class Player < Game
-  def initialize
+class Players < Game
+  attr_reader :player1, :player2
+
+  def initialize(sign)
     @player1 = player1
     @player2 = player2
+    @sign = sign
   end
 
   def your_turn?
@@ -56,25 +61,28 @@ class Player < Game
   end
 
   def player_input
-    if current_player == player1
-      sign = 'X'
-    else
-      sign = '0'
-    end
     puts "#{current_player}, please input your coordonates with
     a letter (A, B or C) and a number (1, 2 or 3)"
-    round = gets.chomp.to_s.check
+    round = gets.chomp.to_s.input_check
   end
 
-  def check
-    #round.to_i.length != 2 ? :input_error
+  def write_the_sign
+
+  end
+
+  def write_error
+    puts 'Someone already played there, please input again.'
+  end
+
+  def input_check
+    # round.to_i.length != 2 ? :input_error
     input_error unless round.match?(/\AA|B|C/i) # checks if input matches letter
-    input_error unless round.match?(/1|2|3\z/)# checks if last input character matches 1,2 or 3
+    input_error unless round.match?(/1|2|3\z/) # checks if last input character matches 1,2 or 3
   end
 
   def input_error
-    puts "#{current_player}, your input is not a letter and a number,
-    please input again"
+    puts '#{current_player}, your input is not a letter and a number,
+    please input again'
   end
 
   def plays
@@ -85,4 +93,10 @@ class Player < Game
     win == "true" ? :endgame : your_turn? # checks if a player has won, else start a new turn
   end
 end
-current_player.plays
+
+binding.pry
+
+game = Game.new
+player1 = Players.new("X")
+player2 = Players.new("0")
+player1.plays
