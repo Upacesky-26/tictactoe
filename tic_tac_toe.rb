@@ -42,7 +42,7 @@ end
 
 # define the players
 class Players < Game
-  attr_reader :player1, :player2
+  attr_reader :player1, :player2, :sign
 
   def initialize(sign)
     @player1 = player1
@@ -87,16 +87,17 @@ class Players < Game
 
   def plays
     draw_field
-    # choose player
+    current_player.your_turn?
     # input coordinate
     @turn_count += 1
     win == "true" ? :endgame : your_turn? # checks if a player has won, else start a new turn
   end
 end
 
-binding.pry
-
 game = Game.new
 player1 = Players.new("X")
 player2 = Players.new("0")
+
+binding.pry
+
 player1.plays
