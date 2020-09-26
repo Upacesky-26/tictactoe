@@ -7,26 +7,14 @@ class Game
   attr_accessor :first_row, :second_row, :third_row, :turn_count, :current_player
 
   def initialize
-    @first_row = ['-', '-', '-']
-    @second_row = ['-', '-', '-']
-    @third_row = ['-', '-', '-']
+    @board = {a: [1, 2, 3], b: [4, 5, 6], c: [7, 8, 9]}
     @turn_count = 0
-    @current_player = ""
+    @current_player = current_player
   end
-
+WINNING_COMBINATIONS =
+@board
   def win?
-    case test
-    when @first_row.uniq.count <= 1
-      'true'
-    when @second_row.uniq.count <= 1
-      'true'
-    when @third_row.uniq.count <= 1
-      'true'
-    when (@first_row[0] && @second_row[1] && @third_row[2]).uniq.count <= 1
-      'true'
-    when (@first_row[2] && @second_row[1] && @third_row[0]).uniq.count <= 1
-      'true'
-    end
+    
   end
 
   def draw_field
@@ -59,13 +47,13 @@ class Players < Game
   end
 
   def player_input
-    puts "#{current_player}, please input your coordonates with
+    puts "#{current_player}, please input your coordinates with
     a letter (A, B or C) and a number (1, 2 or 3)"
     round = gets.chomp.to_s.input_check
   end
 
   def write_the_sign
-
+    round.split.first
   end
 
   def write_error
@@ -73,7 +61,7 @@ class Players < Game
   end
 
   def input_check
-    # round.to_i.length != 2 ? :input_error
+    input_error unless round.length == 2
     input_error unless round.match?(/\AA|B|C/i) # checks if input matches letter
     input_error unless round.match?(/1|2|3\z/) # checks if last input character matches 1,2 or 3
   end
