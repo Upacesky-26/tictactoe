@@ -11,7 +11,7 @@ class Game
     @second_row = ['-', '-', '-']
     @third_row = ['-', '-', '-']
     @turn_count = 0
-    @current_player = current_player
+    @current_player = ""
   end
 
   def win?
@@ -42,16 +42,14 @@ end
 
 # define the players
 class Players < Game
-  attr_reader :player1, :player2, :sign
+  :sign
 
   def initialize(sign)
-    @player1 = player1
-    @player2 = player2
     @sign = sign
   end
 
   def your_turn?
-    if turn_count.even?
+    if @turn_count.even?
       current_player = player1
       player1.plays
     else
@@ -97,6 +95,7 @@ end
 game = Game.new
 player1 = Players.new("X")
 player2 = Players.new("0")
+current_player = player1
 
 binding.pry
 
