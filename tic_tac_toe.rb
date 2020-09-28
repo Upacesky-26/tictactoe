@@ -10,7 +10,7 @@ WINNING_COMBOS = [
   [2, 5, 8]
   [0, 4, 8]
   [2, 4, 6]
-]
+].freeze
 
 # define the game behaviors
 
