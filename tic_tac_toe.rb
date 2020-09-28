@@ -7,7 +7,7 @@ class Game
   attr_accessor :first_row, :second_row, :third_row, :turn_count, :current_player
 
   def initialize
-    @board = {"a": [1, 2, 3], "b": [4, 5, 6], "c": [7, 8, 9]}
+    @board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     @turn_count = 0
     @current_player = current_player
   end
@@ -17,9 +17,9 @@ class Game
   end
 
   def draw_field
-    puts "#{@board[:a][0]} | #{@board[:a][1]} | #{@board[:a][2]}"
-    puts "#{@board[:b][0]} | #{@board[:b][1]} | #{@board[:b][2]}"
-    puts "#{@board[:c][0]} | #{@board[:c][1]} | #{@board[:c][2]}"
+    puts "#{@board[0]} | #{@board[1]} | #{@board[2]}"
+    puts "#{@board[3]} | #{@board[4]} | #{@board[5]}"
+    puts "#{@board[6]} | #{@board[7]} | #{@board[8]}"
   end
 
   def endgame
