@@ -1,17 +1,6 @@
 require 'pry'
 # frozen_string_literal: true
 
-WINNING_COMBOS = [
-  [0, 1, 2]
-  [3, 4, 5]
-  [6, 7, 8]
-  [0, 3, 6]
-  [1, 4, 7]
-  [2, 5, 8]
-  [0, 4, 8]
-  [2, 4, 6]
-].freeze
-
 # define the game behaviors
 
 class Game
@@ -23,8 +12,22 @@ class Game
     @current_player = current_player
   end
 
+  WINNING_COMBOS = [
+    [0, 1, 2]
+    [3, 4, 5]
+    [6, 7, 8]
+    [0, 3, 6]
+    [1, 4, 7]
+    [2, 5, 8]
+    [0, 4, 8]
+    [2, 4, 6]
+  ]
+
   def win?
-    
+    WINNING_COMBOS.each do |combo|
+      if @board.include?(combo)
+        win = true # check if a winning combo is included in the board
+      end
   end
 
   def draw_field
