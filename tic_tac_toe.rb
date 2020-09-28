@@ -36,6 +36,9 @@ class Players < Game
   end
 
   def your_turn?
+    if @turn_count >= 9
+      puts "All positions taken, no winner here..."
+    end
     if @turn_count.even?
       current_player = player1
       player1.plays
