@@ -7,20 +7,19 @@ class Game
   attr_accessor :first_row, :second_row, :third_row, :turn_count, :current_player
 
   def initialize
-    @board = {a: [1, 2, 3], b: [4, 5, 6], c: [7, 8, 9]}
+    @board = {"a": [1, 2, 3], "b": [4, 5, 6], "c": [7, 8, 9]}
     @turn_count = 0
     @current_player = current_player
   end
-WINNING_COMBINATIONS =
-@board
+
   def win?
     
   end
 
   def draw_field
-    puts "A " + @first_row.to_s
-    puts "B " + @second_row.to_s
-    puts "C " + @third_row.to_s
+    puts "#{@board[:a][0]} | #{@board[:a][1]} | #{@board[:a][2]}"
+    puts "#{@board[:b][0]} | #{@board[:b][1]} | #{@board[:b][2]}"
+    puts "#{@board[:c][0]} | #{@board[:c][1]} | #{@board[:c][2]}"
   end
 
   def endgame
