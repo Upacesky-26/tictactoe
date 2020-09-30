@@ -12,19 +12,19 @@ class Game
     @current_player = current_player
   end
 
-  WINNING_COMBOS = [
-    [0, 1, 2]
-    [3, 4, 5]
-    [6, 7, 8]
-    [0, 3, 6]
-    [1, 4, 7]
-    [2, 5, 8]
-    [0, 4, 8]
+  WIN_COMBOS = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
     [2, 4, 6]
-  ]
+  ].freeze
 
   def win?
-    WINNING_COMBOS.each do |combo|
+    WIN_COMBOS.each do |combo|
       if @board.include?(combo)
         win = true # check if a winning combo is included in the board
       end
@@ -64,8 +64,8 @@ class Players < Game
 
   def player_input
     puts "#{current_player}, please input your coordinates with
-    a letter (A, B or C) and a number (1, 2 or 3)"
-    round = gets.chomp.to_s.input_check
+    a number from 1 to 9"
+    round = gets.chomp.input_check
   end
 
   def write_the_sign
@@ -77,9 +77,7 @@ class Players < Game
   end
 
   def input_check
-    input_error unless round.length == 2
-    input_error unless round.match?(/\AA|B|C/i) # checks if input matches letter
-    input_error unless round.match?(/1|2|3\z/) # checks if last input character matches 1,2 or 3
+    input_error unless round.length == 1
   end
 
   def input_error
