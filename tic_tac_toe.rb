@@ -69,7 +69,10 @@ class Players < Game
   end
 
   def write_the_sign
-    round.split.first
+    @board.each do {|cell|
+      if cell = round - 1     
+      cell = current_player.sign
+    }
   end
 
   def write_error
