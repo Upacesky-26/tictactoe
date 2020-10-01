@@ -23,11 +23,14 @@ class Game
     [2, 4, 6]
   ].freeze
 
+  # check if a winning combo is included in the board
+
   def win?
     WIN_COMBOS.each do |combo|
       if @board.include?(combo)
-        win = true # check if a winning combo is included in the board
+        win = true
       end
+    end
   end
 
   def draw_field
@@ -43,7 +46,7 @@ end
 
 # define the players
 class Players < Game
-  :sign
+  attr_accessor :sign
 
   def initialize(sign)
     @sign = sign
@@ -69,10 +72,10 @@ class Players < Game
   end
 
   def write_the_sign
-    @board.each do {|cell|
+    @board.each do |cell|
       if cell = round - 1     
-      cell = current_player.sign
-    }
+        cell = current_player.sign
+      end
   end
 
   def write_error
@@ -80,7 +83,7 @@ class Players < Game
   end
 
   def input_check
-    input_error unless round.length == 1
+    :input_error unless round.length == 1
   end
 
   def input_error
@@ -91,9 +94,9 @@ class Players < Game
   def plays
     draw_field
     current_player.your_turn?
-    # input coordinate
+    current_player.write_the_sign
     @turn_count += 1
-    win == "true" ? :endgame : your_turn? # checks if a player has won, else start a new turn
+    win == "true" ? :endgame : your_turn?
   end
 end
 
