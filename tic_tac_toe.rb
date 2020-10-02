@@ -52,16 +52,17 @@ class Players < Game
     @sign = sign
   end
 
+  
   def your_turn?
     if @turn_count >= 9
       puts "All positions taken, no winner here..."
-    end
-    if @turn_count.even?
+    
+    elsif @turn_count.even?
       current_player = player1
       player1.plays
-    else
-      current_player = player2
-      player2.plays
+      else
+        current_player = player2
+        player2.plays
     end
   end
 
@@ -76,6 +77,7 @@ class Players < Game
       if cell = round - 1     
         cell = current_player.sign
       end
+    end
   end
 
   def write_error
