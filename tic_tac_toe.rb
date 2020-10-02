@@ -1,6 +1,6 @@
-require 'pry'
 # frozen_string_literal: true
 
+require 'pry'
 # define the game behaviors
 
 class Game
@@ -25,7 +25,7 @@ class Game
 
   # check if a winning combo is included in the board
 
-  def win?
+  def win? # Il faut encore définir la variable win
     WIN_COMBOS.each do |combo|
       if @board.include?(combo)
         win = true
@@ -52,17 +52,15 @@ class Players < Game
     @sign = sign
   end
 
-  
   def your_turn?
     if @turn_count >= 9
       puts "All positions taken, no winner here..."
-    
     elsif @turn_count.even?
       current_player = player1
       player1.plays
-      else
-        current_player = player2
-        player2.plays
+    else
+      current_player = player2
+      player2.plays
     end
   end
 
@@ -74,7 +72,7 @@ class Players < Game
 
   def write_the_sign
     @board.each do |cell|
-      if cell = round - 1     
+      if cell == round - 1     
         cell = current_player.sign
       end
     end
@@ -89,7 +87,7 @@ class Players < Game
   end
 
   def input_error
-    puts '#{current_player}, your input is not a letter and a number,
+    puts '#{current_player}, your input is not a number,
     please input again'
   end
 
