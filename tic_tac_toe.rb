@@ -4,7 +4,7 @@ require 'pry'
 # define the game behaviors
 
 class Game
-  attr_accessor :first_row, :second_row, :third_row, :turn_count, :current_player
+  attr_accessor :first_row, :second_row, :third_row, :turn_count, :current_player, :board
 
   def initialize
     @board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -25,10 +25,10 @@ class Game
 
   # check if a winning combo is included in the board
 
-  def win? # Il faut encore définir la variable win
+  def win?
     WIN_COMBOS.each do |combo|
       if @board.include?(combo)
-        win = true
+        current_player.win = true
       end
     end
   end
@@ -40,7 +40,11 @@ class Game
   end
 
   def endgame
-    puts "Congratulation, #{current_player} wins!"
+    puts "Congratulation, #{current_player.sign} wins!
+    Type Y to play again"
+    replay = gets.chomp.downcase
+    replay == "y" ? :player1.plays : :exit
+
   end
 end
 
@@ -48,14 +52,17 @@ end
 class Players < Game
   attr_accessor :sign
 
-  def initialize(sign)
+  def initialize(sign, win = false)
     @sign = sign
     @win = win
   end
 
   def your_turn?
     if @turn_count >= 9
-      puts "All positions taken, no winner here..."
+      puts "All positions taken, no winner here...
+      Type Y to play again"
+      replay = gets.chomp.downcase
+      replay == "y" ? :player1.plays : :exit
     elsif @turn_count.even?
       current_player = player1
       player1.plays
@@ -72,8 +79,8 @@ class Players < Game
   end
 
   def write_the_sign
-    @board.each do |cell|
-      if cell == round - 1     
+    @board.map do |cell|
+      if cell == round - 1
         cell = current_player.sign
       end
     end
@@ -93,11 +100,11 @@ class Players < Game
   end
 
   def plays
-    draw_field
+    game.draw_field
     current_player.your_turn?
     current_player.write_the_sign
     @turn_count += 1
-    win == "true" ? :endgame : your_turn?
+    win == true ? :endgame : your_turn?
   end
 end
 
@@ -106,6 +113,6 @@ player1 = Players.new("X")
 player2 = Players.new("0")
 current_player = player1
 
-binding.pry
+# binding.pry
 
 player1.plays
