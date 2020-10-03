@@ -50,6 +50,7 @@ class Players < Game
 
   def initialize(sign)
     @sign = sign
+    @win = win
   end
 
   def your_turn?
